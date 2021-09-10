@@ -22,12 +22,10 @@ parcel = [8, 17, 0.3]
 def findSize(min, max, item, parType):
     counter = 0
     for i in range(3):
-        i = i-1
         if(item[i]>min[i] and item[i]<max[i]):
             counter += 1
     if counter == 3:
         print(parType)
 
-for i in range(5):
-    i -= 1
+for i in range(4):
     findSize(fullMin[i], fullMax[i], parcel, typeList[i])
