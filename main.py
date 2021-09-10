@@ -12,12 +12,22 @@ envoMax = [6.125, 11.5, 0.25]
 lenvoMin = [6.125, 11, 0.25]
 lenvoMax = [24, 18, 0.5]
 
-parcel = [3.7, 3.7, 0.008]
+fullMin = [regularMin, largeMin, envoMin, lenvoMin]
+fullMax = [regularMax, largeMax, envoMax, lenvoMax]
 
-def findSize(min, max, item):
+typeList = ['regular', 'large', 'envelope', 'large envelope']
+
+parcel = [8, 17, 0.3]
+
+def findSize(min, max, item, parType):
+    counter = 0
     for i in range(3):
         i = i-1
         if(item[i]>min[i] and item[i]<max[i]):
-            print("1")
+            counter += 1
+    if counter == 3:
+        print(parType)
 
-findSize(regularMin, regularMax, parcel)
+for i in range(5):
+    i -= 1
+    findSize(fullMin[i], fullMax[i], parcel, typeList[i])
