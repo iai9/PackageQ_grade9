@@ -24,4 +24,4 @@ def zonesthrough(testdict, testcodes):
 
 print(zonesthrough(testdict, testcodes)) # print only for debugging :D
 
-#### 
+#### ok adding to psuedo main now. will keep 
