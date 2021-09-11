@@ -137,9 +137,11 @@ print(letter.type)
 letter.zones = zonesthrough(zipzones, letter.zip_list)# finds number of zones passed through. takes letter.zip_list
 print(letter.zones)
 
-price = (prices[letter.type][0]  + prices[letter.type][1] * int(letter.zones))/100 ### it works
-print(str(price))
-
+if letter.type != 'unmailable': # Only shows prices if the package can be mailed
+    price = (prices[letter.type][0]  + prices[letter.type][1] * int(letter.zones))/100 ### it works
+    print(str(price))
+else:
+    print('This parcel is not mailable.')
 ##### IN SUMMARY #####
 
 # I like it so far. obviously we need optimization. this could probably be faster, and generally prettier code, but i think its good
