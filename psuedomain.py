@@ -21,7 +21,7 @@ lenvoMax = [24, 18, 0.5]
 fullMin = [regularMin, largeMin, envoMin, lenvoMin]
 fullMax = [regularMax, largeMax, envoMax, lenvoMax]
 
-typeList = ['regular', 'large', 'envelope', 'large envelope', "package", "large package"] # list all package types
+typeList = ['regular', 'large', 'envelope', 'large envelope', "package", "large package", 'unmailable'] # list all package types
 
 zipzones = {1:[1, 6999],        # List of zipcodes and their zone. couldve make the key go frm 0th element for iteration. decided not 
             2:[7000, 19999],    # to as its just easier and makes more sense for them to keep OG values. 
@@ -97,6 +97,8 @@ def findSize(listmin, listmax, item, parType): # finds the type a letter is
                     counter += 1
             if counter == 3:
                 return parType[j]
+            elif counter < 3 and j == 3:
+                return parType[6] # Returns a sting with unmailabe if nothing is matched, I wrote this really quickly and have not tested
 
     # i like the above. 7 lines, and it works really well. good job with that, harry. 
     # 
