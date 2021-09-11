@@ -18,7 +18,7 @@ fullMax = [regularMax, largeMax, envoMax, lenvoMax]
 
 typeList = ['regular', 'large', 'envelope', 'large envelope']
 
-parcel = [3.7, 3.7, 0.008]
+parcel = [5, 11, 0.017]
 
 #########################################################################################
 
@@ -61,14 +61,16 @@ def findSize(listmin, listmax, item, parType):
       #print(parType[j])
       return parType[j]
 
-def zipcodezones():
-    pass
+
+
+
 
 letter = Letter(None, None)
 datagrabbed = grabdata()
 letter.dim_list = datagrabbed[0:3]
 print(letter.dim_list)
-letter.zip_list = datagrabbed
+letter.zip_list = datagrabbed[3:5]
+print(letter.zip_list)
 
 letter.itemtype(str(findSize(fullMin, fullMax, parcel, typeList)))
 print(letter.type)
