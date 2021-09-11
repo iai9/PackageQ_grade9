@@ -79,12 +79,12 @@ def findSize(listmin, listmax, item, parType): # finds the type a letter is
 
     if item[0] > 24 and item[1] > 18 and item[2] > 0.05:
         twine = 2*item[1] + 2*item[2]
-        if twine >= 84:
+        if twine <= 84:
             return "package"
         elif 84 < twine <=134:
             return "large package"
         else:
-            raise ValueError
+            return "unmailable"
     
     # the above is last minute stuff before i go to bed. i hate it. just a placeholder. could probbaly be done better
     # if u can crack it, go ahead harry. however, a more pressing concern below:
