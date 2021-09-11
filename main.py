@@ -17,7 +17,7 @@ fullMax = [regularMax, largeMax, envoMax, lenvoMax]
 
 typeList = ['regular', 'large', 'envelope', 'large envelope']
 
-parcel = [8, 17, 0.3]
+parcel = [3.7, 3.7, 0.008]
 
 def findSize(min, max, item, parType):
     counter = 0
@@ -27,5 +27,6 @@ def findSize(min, max, item, parType):
     if counter == 3:
         print(parType)
 
-for i in range(4):
+for i in range(5):
+    i -= 1
     findSize(fullMin[i], fullMax[i], parcel, typeList[i])
