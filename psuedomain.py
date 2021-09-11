@@ -20,13 +20,18 @@ fullMax = [regularMax, largeMax, envoMax, lenvoMax]
 
 typeList = ['regular', 'large', 'envelope', 'large envelope']
 
-
 zipzones = {1:[1, 6999],
             2:[7000, 19999],
             3:[20000, 35999],
             4:[36000, 62999],
             5:[63000, 84999], 
             6:[85000, 99999]}
+
+prices = {"regular": [20, 3],
+        "large": [37, 3], 
+        "envelope": [37, 4],
+        "large envelope": [295, 5]
+        }
 
 #########################################################################################
 
@@ -59,14 +64,24 @@ def grabdata():
     return letter_data
 
 def findSize(listmin, listmax, item, parType):
-  for j in range(0,4):
-    counter = 0
-    for i in range(0,3):
-      if listmin[j][i] < item[i] <= listmax[j][i]:
-        counter += 1
-    if counter == 3:
-      #print(parType[j])
-      return parType[j]
+    if item[0] > 24 and item[1] > 18 and item[2] > 0.05:
+        twine = 2*item[1] + 2*item[2]
+        if twine >= 84:
+            return "package"
+        elif 84 < twine <=134:
+            return "large package"
+        else:
+            raise ValueError
+
+    else:
+        for j in range(0,4):
+            counter = 0
+            for i in range(0,3):
+                if listmin[j][i] < item[i] <= listmax[j][i]:
+                    counter += 1
+            if counter == 3:
+            #print(parType[j])
+            return parType[j]
 
 def zonesthrough(testdict, testcodes):
     zones = [0,0] # the two zones we pass through. idc about scalability/adaptivity atm, as the problem has no stipulations
