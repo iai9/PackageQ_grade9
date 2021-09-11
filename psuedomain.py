@@ -3,6 +3,7 @@
 
 # commented for your convience harrison. if u need to change something go for it, just indicate what u changed. ty
 
+
 ###### Data #############################################################################
 
 regularMin = [3.5, 3.5, 0.007]
