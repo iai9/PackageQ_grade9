@@ -120,7 +120,6 @@ def zonesthrough(testdict, testcodes):
     # biggest worry atm is findSize. 
 
 
-
 letter = Letter(None, None, None, None) # created object of the above class
 
 datagrabbed = grabdata() # run grabdata to get list of 3 numbers and 2 zip codes as strings
@@ -136,6 +135,7 @@ print(letter.type)
 
 letter.zones = zonesthrough(zipzones, letter.zip_list)# finds number of zones passed through. takes letter.zip_list
 print(letter.zones)
+
 
 if letter.type != 'unmailable': # Only shows prices if the package can be mailed
     price = (prices[letter.type][0]  + prices[letter.type][1] * int(letter.zones))/100 ### it works
