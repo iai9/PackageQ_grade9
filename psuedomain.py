@@ -124,7 +124,7 @@ letter = Letter(None, None, None, None) # created object of the above class
 
 datagrabbed = grabdata() # run grabdata to get list of 3 numbers and 2 zip codes as strings
 
-letter.dim_list = datagrabbed[0:3] # assigns dim_list to the first three elements fo grabdata, the dimesnions
+letter.dim_list = datagrabbed[0:3] # assigns dim_list to the first three elements fo grabdata, the dimensions
 print(letter.dim_list)
 
 letter.zip_list = datagrabbed[3:5] # assigns zip_list to the two zipcodes. 
