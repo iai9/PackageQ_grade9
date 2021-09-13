@@ -70,7 +70,8 @@ def grabdata():
         for i in range (0,2):
             while True:
                 try:
-                    letter_data.append(str(int(input("Zipcode: "))))
+                    zipcode = (int(input("Zipcode: ")))
+                    letter_data.append(str(zipcode))
                     break
                 except ValueError:
                     print("Enter a numerical value")
@@ -132,28 +133,30 @@ def zonesthrough(testdict, testcodes):
     # biggest worry atm is findSize. 
 
 
-letter = Letter(None, None, None, None) # created object of the above class
+if __name__ == "__main__":
+    letter = Letter(None, None, None, None) # created object of the above class
 
-datagrabbed = grabdata() # run grabdata to get list of 3 numbers and 2 zip codes as strings
+    datagrabbed = grabdata() # run grabdata to get list of 3 numbers and 2 zip codes as strings
 
-letter.dim_list = datagrabbed[0:3] # assigns dim_list to the first three elements fo grabdata, the dimensions
-print(letter.dim_list)
+    letter.dim_list = datagrabbed[0:3] # assigns dim_list to the first three elements fo grabdata, the dimensions
+    print(letter.dim_list)
 
-letter.zip_list = datagrabbed[3:5] # assigns zip_list to the two zipcodes. 
-print(letter.zip_list)
+    letter.zip_list = datagrabbed[3:5] # assigns zip_list to the two zipcodes. 
+    print(letter.zip_list)
 
-letter.type = str(findSize(fullMin, fullMax, letter.dim_list, typeList)) #findsize func computes the type. takes letter.dim_list
-print(letter.type)
+    letter.type = str(findSize(fullMin, fullMax, letter.dim_list, typeList)) #findsize func computes the type. takes letter.dim_list
+    print(letter.type)
 
-letter.zones = zonesthrough(zipzones, letter.zip_list)# finds number of zones passed through. takes letter.zip_list
-print(letter.zones)
+    letter.zones = zonesthrough(zipzones, letter.zip_list)# finds number of zones passed through. takes letter.zip_list
+    print(letter.zones)
 
 
-if letter.type != 'unmailable': # Only shows prices if the package can be mailed
-    price = (prices[letter.type][0]  + prices[letter.type][1] * int(letter.zones))/100 ### it works
-    print(str(price))
-else:
-    print('This parcel is not mailable.')
+    if letter.type != 'unmailable': # Only shows prices if the package can be mailed
+        price = (prices[letter.type][0]  + prices[letter.type][1] * int(letter.zones))/100 ### it works
+        print(str(price))
+    else:
+        print('This parcel is not mailable.')
+
 ##### IN SUMMARY #####
 
 # I like it so far. obviously we need optimization. this could probably be faster, and generally prettier code, but i think its good
