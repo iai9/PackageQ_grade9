@@ -58,12 +58,24 @@ def grabdata():
     while flag:
 
         for i in range (0,3):
-            letter_data.append(float(input("Measurement: ")))
+            while True:
+                try:
+                    letter_data.append(float(input("Measurement: ")))
+                    break
+                except ValueError:
+                    print("Input and integer asshat")
+                    continue
+                    
+                
         for i in range (0,2):
-            letter_data.append(str(input("Zipcode: "))) 
-        # originally did the above iterations as one range(5). but, that is not what is stipulated by the question
-        # so easiest way to have to data types was just two iterations
-
+            while True:
+                try:
+                    letter_data.append(str(int(input("Zipcode: "))))
+                    break
+                except ValueError:
+                    print("Enter a numerical value")
+                    continue
+        
         print(f"Length: {str(letter_data[0])} units, Height: {str(letter_data[1])} units, Thickness: {str(letter_data[2])} Inches, From: {str(letter_data[3])}, To: {str(letter_data[4])}")
         # the above is just user friendlyness. displays the values. probably could've done something really clever with string
         # manipulation to make this pep8. but whatever. 
