@@ -1,7 +1,7 @@
 
 # pseudo main with ugly code. will fix when added to "main.py"
 
-# commented for your convience harrison. if u need to change something go for it, just indicate what u changed. ty
+# commented for your convenience harrison. if u need to change something go for it, just indicate what u changed. ty
 
 
 ###### Data #############################################################################
@@ -23,15 +23,15 @@ fullMax = [regularMax, largeMax, envoMax, lenvoMax]
 
 typeList = ['regular', 'large', 'envelope', 'large envelope', "package", "large package", 'unmailable'] # list all package types
 
-zipzones = {1:[1, 6999],        # List of zipcodes and their zone. couldve make the key go frm 0th element for iteration. decided not 
+zipzones = {1:[1, 6999],        # List of zipcodes and their zone. could've make the key go frm 0th element for iteration. decided not 
             2:[7000, 19999],    # to as its just easier and makes more sense for them to keep OG values. 
-            3:[20000, 35999],   # theyre ints, not strings. the sitpulation in the question was that only inputs needed to be strings
+            3:[20000, 35999],   # they're ints, not strings. the stipulation in the question was that only inputs needed to be strings
             4:[36000, 62999],   # so i kep the zipcode vals as ints to make it easier
             5:[63000, 84999],   #
             6:[85000, 99999]}   # 
 
 prices = {"regular": [20, 3],           # prices. ints in the hundreds, so cents. easier to do this and divide by 100 at the end
-        "large": [37, 3],               # than deal with floats. each key is the same as type list so its all accesible. 
+        "large": [37, 3],               # than deal with floats. each key is the same as type list so its all accessible. 
         "envelope": [37, 4],            # added the package prices last minute. 
         "large envelope": [295, 5],     # 
         "package": [295, 25],           #
@@ -48,12 +48,12 @@ class Letter: # decided to make a class to store all attributes of the letter ea
         self.dim_list = measurements # measurements of box (len, height, thick). obtained via user input
         self.zip_list = zipcode # the two zipcode measurements as strings in list. taken from user input. 
         self.type = lettertype # what type of package it is. obtained via dim_list and a function we defined later
-        self.zones = zipsthrough #how many zones it passes through. obatained via zip_list and a function well define later
+        self.zones = zipsthrough #how many zones it passes through. obtained via zip_list and a function well define later
 
 
 def grabdata():
-    flag = True ## Question stipulated input should be able to be reinputed should there be error. flag method easiest. 
-    letter_data = [] # blanck list for user input data. expect to have 5 elements.
+    flag = True ## Question stipulated input should be able to be reinduced should there be error. flag method easiest. 
+    letter_data = [] # blank list for user input data. expect to have 5 elements.
 
     while flag:
 
@@ -65,7 +65,7 @@ def grabdata():
         # so easiest way to have to data types was just two iterations
 
         print(f"Length: {str(letter_data[0])} units, Height: {str(letter_data[1])} units, Thickness: {str(letter_data[2])} Inches, From: {str(letter_data[3])}, To: {str(letter_data[4])}")
-        # the above is just user friendlyness. displays the values. probably couldve done something really clever with string
+        # the above is just user friendlyness. displays the values. probably could've done something really clever with string
         # manipulation to make this pep8. but whatever. 
 
         if str(input("Would you like to proceed with the above values? (y/n): ")).lower().strip() == "y":
@@ -86,7 +86,7 @@ def findSize(listmin, listmax, item, parType): # finds the type a letter is
         else:
             return "unmailable"
     
-    # the above is last minute stuff before i go to bed. i hate it. just a placeholder. could probbaly be done better
+    # the above is last minute stuff before i go to bed. i hate it. just a placeholder. could probably be done better
     # if u can crack it, go ahead harry. however, a more pressing concern below:
 
     else:
@@ -98,7 +98,7 @@ def findSize(listmin, listmax, item, parType): # finds the type a letter is
             if counter == 3:
                 return parType[j]
             elif counter < 3 and j == 3:
-                return parType[6] # Returns a sting with unmailabe if nothing is matched, I wrote this really quickly and have not tested
+                return parType[6] # Returns a sting with unmailable if nothing is matched, I wrote this really quickly and have not tested
 
     # i like the above. 7 lines, and it works really well. good job with that, harry. 
     # 
@@ -108,7 +108,7 @@ def findSize(listmin, listmax, item, parType): # finds the type a letter is
 def zonesthrough(testdict, testcodes):
     zones = [0,0] # the two zones we pass through. idc about scalability/adaptivity atm, as the problem has no stipulations
     for j in range (2): # two zipcodes to run through
-        for i in range(0,6): # 6 potenial regions to run through
+        for i in range(0,6): # 6 potential regions to run through
             i += 1 # by def of range func, i is one less than the dict key (see above, key starts at 1, i starts at 0). "+=" is the quick fix
             if testdict[i][0] <= int(testcodes[j]) <= testdict[i][1]: #simple comparing thezipcode to values for each zone
                 zones[j] = i # if zipcode matches with a zone, add zone number to list
