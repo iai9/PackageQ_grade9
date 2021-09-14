@@ -1,6 +1,4 @@
 
-# pseudo main with ugly code. will fix when added to "main.py"
-
 # commented for your convenience harrison. if u need to change something go for it, just indicate what u changed. ty
 
 
@@ -25,14 +23,14 @@ typeList = ['regular', 'large', 'envelope', 'large envelope', "package", "large 
 
 zipzones = {1:[1, 6999],        # List of zipcodes and their zone. could've make the key go frm 0th element for iteration. decided not 
             2:[7000, 19999],    # to as its just easier and makes more sense for them to keep OG values. 
-            3:[20000, 35999],   # they're ints, not strings. the stipulation in the question was that only inputs needed to be strings
-            4:[36000, 62999],   # so i kep the zipcode vals as ints to make it easier
-            5:[63000, 84999],   #
+            3:[20000, 35999],   # 
+            4:[36000, 62999],   # they're ints, not strings. the stipulation in the question was that only inputs needed to be strings 
+            5:[63000, 84999],   # so i kep the zipcode vals as ints to make it easier
             6:[85000, 99999]}   # 
 
 prices = {"regular": [20, 3],           # prices. ints in the hundreds, so cents. easier to do this and divide by 100 at the end
         "large": [37, 3],               # than deal with floats. each key is the same as type list so its all accessible. 
-        "envelope": [37, 4],            # added the package prices last minute. 
+        "envelope": [37, 4],            # added the package prices last minute, harry. lmk if it works w/ u 
         "large envelope": [295, 5],     # 
         "package": [295, 25],           #
         "large package": [395, 35]      #
@@ -58,20 +56,20 @@ def grabdata():
     while flag:
 
         for i in range (0,3):
-            while True:
+            while True:  #### Error handling my dude
                 try:
                     letter_data.append(float(input("Measurement: ")))
                     break
                 except ValueError:
-                    print("Input and integer asshat")
+                    print("Input and integer.")
                     continue
                     
                 
         for i in range (0,2):
-            while True:
+            while True: ### even more erro handling. forced user to input oint
                 try:
                     zipcode = (int(input("Zipcode: ")))
-                    letter_data.append(str(zipcode))
+                    letter_data.append(str(zipcode)) # question stipulated they must be strings. silly if u ask me but whatever
                     break
                 except ValueError:
                     print("Enter a numerical value")
@@ -99,8 +97,7 @@ def findSize(listmin, listmax, item, parType): # finds the type a letter is
         else:
             return "unmailable"
     
-    # the above is last minute stuff before i go to bed. i hate it. just a placeholder. could probably be done better
-    # if u can crack it, go ahead harry. however, a more pressing concern below:
+    # the above is last minute stuff before i go to bed. i hate it. just a placeholder. could probably be done better/with sexier code
 
     else:
         for j in range(0,4):
@@ -115,8 +112,9 @@ def findSize(listmin, listmax, item, parType): # finds the type a letter is
 
     # i like the above. 7 lines, and it works really well. good job with that, harry. 
     # 
-    # the biggest problem here is that there is very little error handling and there is not a single condition for 
-    # unmailable packages. we need to add something for that. will mull over it b4 i sleep... see what u can do harry
+    # [FIXED]:
+    #   the biggest problem here is that there is very little error handling and there is not a single condition for 
+    #   unmailable packages. we need to add something for that. will mull over it b4 i sleep... see what u can do harry
 
 def zonesthrough(testdict, testcodes):
     zones = [0,0] # the two zones we pass through. idc about scalability/adaptivity atm, as the problem has no stipulations
@@ -129,8 +127,7 @@ def zonesthrough(testdict, testcodes):
     passingthrough = (max(zones) - min(zones)) # finding number of zones passed through. zone numbers themselves irrelevant except for debugging
     return passingthrough # returns number of zones passed to the function
 
-    # i generally like this. could maybe be improved. will worry abt that when we port everything over to main.py 
-    # biggest worry atm is findSize. 
+    # i generally like this. could maybe be improved. works tho so idc atm
 
 
 if __name__ == "__main__":
