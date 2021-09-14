@@ -139,23 +139,23 @@ if __name__ == "__main__":
     datagrabbed = grabdata() # run grabdata to get list of 3 numbers and 2 zip codes as strings
 
     letter.dim_list = datagrabbed[0:3] # assigns dim_list to the first three elements fo grabdata, the dimensions
-    print(letter.dim_list)
+    #print(letter.dim_list) 
 
     letter.zip_list = datagrabbed[3:5] # assigns zip_list to the two zipcodes. 
-    print(letter.zip_list)
+    #print(letter.zip_list)
 
     letter.type = str(findSize(fullMin, fullMax, letter.dim_list, typeList)) #findsize func computes the type. takes letter.dim_list
-    print(letter.type)
+    #print(letter.type)
 
     letter.zones = zonesthrough(zipzones, letter.zip_list)# finds number of zones passed through. takes letter.zip_list
-    print(letter.zones)
+    #print(letter.zones)
 
 
     if letter.type != 'unmailable': # Only shows prices if the package can be mailed
         price = (prices[letter.type][0]  + prices[letter.type][1] * int(letter.zones))/100 ### it works
-        print(str(price))
+        print(f"\nPrice: {str(price)}")
     else:
-        print('This parcel is not mailable.')
+        print('\nThis parcel is not mailable.')
 
 ##### IN SUMMARY #####
 
