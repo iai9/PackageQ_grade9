@@ -87,7 +87,7 @@ def findSize(listmin, listmax, item, parType): # finds the type a letter is
         elif 84 < twine <=134:
             return "large package"
         else:
-            raise ValueError
+            quit 
     
     # the above is last minute stuff before i go to bed. i hate it. just a placeholder. could probbaly be done better
     # if u can crack it, go ahead harry. however, a more pressing concern below:
