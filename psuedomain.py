@@ -123,31 +123,43 @@ def zonesthrough(testdict, testcodes):
     # biggest worry atm is findSize. 
 
 
+while True:
+    try:
+        if str(input("y/n???: ")).lower().strip() == "y":
+            letter = Letter(None, None, None, None) # created object of the above class
 
-letter = Letter(None, None, None, None) # created object of the above class
+            datagrabbed = grabdata() # run grabdata to get list of 3 numbers and 2 zip codes as strings
 
-datagrabbed = grabdata() # run grabdata to get list of 3 numbers and 2 zip codes as strings
+            letter.dim_list = datagrabbed[0:3] # assigns dim_list to the first three elements fo grabdata, the dimesnions
+            letter.zip_list = datagrabbed[3:5] # assigns zip_list to the two zipcodes. 
+            letter.type = str(findSize(fullMin, fullMax, letter.dim_list, typeList)) #findsize func computes the type. takes letter.dim_list as arg
+            letter.zones = zonesthrough(zipzones, letter.zip_list)# finds number of zones passed through. takes letter.zip_list as arg
 
-letter.dim_list = datagrabbed[0:3] # assigns dim_list to the first three elements fo grabdata, the dimesnions
-print(letter.dim_list)
+            if letter.type != 'unmailable': # Only shows prices if the package can be mailed
+                price = (prices[letter.type][0]  + prices[letter.type][1] * int(letter.zones))/100 ### it works
+                print(str(price))
+            else:
+                print('This parcel is not mailable.')
 
-letter.zip_list = datagrabbed[3:5] # assigns zip_list to the two zipcodes. 
-print(letter.zip_list)
+        elif str(input("y/n???: ")).lower().strip() == "n":
+            quit
+        else:
+            raise ValueError
+    except ValueError:
+        print("Put 'y' or 'n' dipshit.")
+        continue
 
-letter.type = str(findSize(fullMin, fullMax, letter.dim_list, typeList)) #findsize func computes the type. takes letter.dim_list as arg
-print(letter.type)
+# letter = Letter(None, None, None, None) # created object of the above class
 
-letter.zones = zonesthrough(zipzones, letter.zip_list)# finds number of zones passed through. takes letter.zip_list as arg
-print(letter.zones)
+# datagrabbed = grabdata() # run grabdata to get list of 3 numbers and 2 zip codes as strings
 
-if letter.type != 'unmailable': # Only shows prices if the package can be mailed
-    price = (prices[letter.type][0]  + prices[letter.type][1] * int(letter.zones))/100 ### it works
-    print(str(price))
-else:
-    print('This parcel is not mailable.')
-##### IN SUMMARY #####
+# letter.dim_list = datagrabbed[0:3] # assigns dim_list to the first three elements fo grabdata, the dimesnions
+# letter.zip_list = datagrabbed[3:5] # assigns zip_list to the two zipcodes. 
+# letter.type = str(findSize(fullMin, fullMax, letter.dim_list, typeList)) #findsize func computes the type. takes letter.dim_list as arg
+# letter.zones = zonesthrough(zipzones, letter.zip_list)# finds number of zones passed through. takes letter.zip_list as arg
 
-# I like it so far. obviously we need optimization. this could probably be faster, and generally prettier code, but i think its good
-# so far
-# Biggest problem right now is the lack of "unmailable" on the findSize function as well as a lack of potential error handling
-# so we can work on that
+# if letter.type != 'unmailable': # Only shows prices if the package can be mailed
+#     price = (prices[letter.type][0]  + prices[letter.type][1] * int(letter.zones))/100 ### it works
+#     print(str(price))
+# else:
+#     print('This parcel is not mailable.')
