@@ -6,6 +6,8 @@
 
 ###### Data #############################################################################
 
+# considering putting data in external file for prettyness. we'll see. 
+
 regularMin = [3.5, 3.5, 0.007]
 regularMax = [4.25, 6, 0.016]
 
@@ -124,42 +126,32 @@ def zonesthrough(testdict, testcodes):
 
 
 while True:
+    check = str(input("Would you like to input a set of mail parameters? (y/n): ").lower().strip())
+
     try:
-        if str(input("y/n???: ")).lower().strip() == "y":
+
+        if check == 'y':
+
             letter = Letter(None, None, None, None) # created object of the above class
-
             datagrabbed = grabdata() # run grabdata to get list of 3 numbers and 2 zip codes as strings
-
             letter.dim_list = datagrabbed[0:3] # assigns dim_list to the first three elements fo grabdata, the dimesnions
-            letter.zip_list = datagrabbed[3:5] # assigns zip_list to the two zipcodes. 
+            letter.zip_list = datagrabbed[3:5] # assigns zip_list to the two zipcodes.
             letter.type = str(findSize(fullMin, fullMax, letter.dim_list, typeList)) #findsize func computes the type. takes letter.dim_list as arg
-            letter.zones = zonesthrough(zipzones, letter.zip_list)# finds number of zones passed through. takes letter.zip_list as arg
+            letter.zones = zonesthrough(zipzones, letter.zip_list) # finds number of zones passed through. takes letter.zip_list as arg
 
             if letter.type != 'unmailable': # Only shows prices if the package can be mailed
-                price = (prices[letter.type][0]  + prices[letter.type][1] * int(letter.zones))/100 ### it works
+                price = (prices[letter.type][0]  + prices[letter.type][1] * int(letter.zones))/100
                 print(str(price))
             else:
                 print('This parcel is not mailable.')
 
-        elif str(input("y/n???: ")).lower().strip() == "n":
-            quit
+
+        elif check == 'n':
+            print("ok bye")
+            quit()
         else:
             raise ValueError
+            
     except ValueError:
-        print("Put 'y' or 'n' dipshit.")
+        print("Input 'y' or 'n' silly.")
         continue
-
-# letter = Letter(None, None, None, None) # created object of the above class
-
-# datagrabbed = grabdata() # run grabdata to get list of 3 numbers and 2 zip codes as strings
-
-# letter.dim_list = datagrabbed[0:3] # assigns dim_list to the first three elements fo grabdata, the dimesnions
-# letter.zip_list = datagrabbed[3:5] # assigns zip_list to the two zipcodes. 
-# letter.type = str(findSize(fullMin, fullMax, letter.dim_list, typeList)) #findsize func computes the type. takes letter.dim_list as arg
-# letter.zones = zonesthrough(zipzones, letter.zip_list)# finds number of zones passed through. takes letter.zip_list as arg
-
-# if letter.type != 'unmailable': # Only shows prices if the package can be mailed
-#     price = (prices[letter.type][0]  + prices[letter.type][1] * int(letter.zones))/100 ### it works
-#     print(str(price))
-# else:
-#     print('This parcel is not mailable.')
