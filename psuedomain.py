@@ -1,5 +1,5 @@
 
-# pseudo main with ugly code. will fix when added to "main.py"
+# pseudo main with potentially ugly code. will fix when added to "main.py"
 
 # commented for your convience harrison. if u need to change something go for it, just indicate what u changed. ty
 
@@ -38,7 +38,7 @@ prices = {
     "regular": [20, 3],           # prices. ints in the hundreds, so cents. easier to do this and divide by 100 at the end
     "large": [37, 3],               # than deal with floats. each key is the same as type list so its all accesible. 
     "envelope": [37, 4],            # added the package prices last minute. 
-    "large envelope": [295, 5],     # 
+    "large envelope": [60, 5],     # 
     "package": [295, 25],           #
     "large package": [395, 35]      #
         }
@@ -83,14 +83,16 @@ def grabdata():
 def findSize(listmin, listmax, item, parType): # finds the type a letter is
 
     if item[0] > 24 and item[1] > 18 and item[2] > 0.05:
-        twine = 2*item[1] + 2*item[2]
+        item.sort()
+        item.reverse()
+        twine = 2*item[0] + 2*item[1]
         if twine >= 84:
             return "package"
         elif 84 < twine <=134:
             return "large package"
         else:
-            quit 
-    
+            return "unmailable"
+            
     # the above is last minute stuff before i go to bed. i hate it. just a placeholder. could probbaly be done better
     # if u can crack it, go ahead harry. however, a more pressing concern below:
 
@@ -135,20 +137,25 @@ while True:
             letter = Letter(None, None, None, None) # created object of the above class
             datagrabbed = grabdata() # run grabdata to get list of 3 numbers and 2 zip codes as strings
             letter.dim_list = datagrabbed[0:3] # assigns dim_list to the first three elements fo grabdata, the dimesnions
+            print(letter.dim_list)
             letter.zip_list = datagrabbed[3:5] # assigns zip_list to the two zipcodes.
+            print(letter.zip_list)
             letter.type = str(findSize(fullMin, fullMax, letter.dim_list, typeList)) #findsize func computes the type. takes letter.dim_list as arg
+            print(letter.type)
             letter.zones = zonesthrough(zipzones, letter.zip_list) # finds number of zones passed through. takes letter.zip_list as arg
+            print(letter.zones)
 
             if letter.type != 'unmailable': # Only shows prices if the package can be mailed
                 price = (prices[letter.type][0]  + prices[letter.type][1] * int(letter.zones))/100
-                print(str(price))
+                print(f"$: {str(price)}")
             else:
                 print('This parcel is not mailable.')
 
 
         elif check == 'n':
-            print("ok bye")
+            print("aaaaaaaaargh critical system failure!!!! abort ship, abort ship! take the escape pods before we make the jump to hyperspace!!!!!!! aaaah noooooooooo *ship explodes and everyone dies*")
             quit()
+
         else:
             raise ValueError
             
