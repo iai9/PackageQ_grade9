@@ -57,7 +57,7 @@ class Letter: # decided to make a class to store all attributes of the letter ea
 
 
 def grabdata():
-    flag = True ## Question stipulated input should be able to be reinputed should there be error. flag method easiest. 
+    flag = True # Question stipulated input should be able to be reinputed should there be error. flag method easiest. 
     letter_data = [] # blanck list for user input data. expect to have 5 elements.
 
     while flag:
